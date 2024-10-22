@@ -1,0 +1,104 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ cout << "\n Nama\t : Ade Setiawan" << endl;
+ cout << " NIK\t : 10000010 " << endl << endl;
+    // Local variable declarations
+    int command = 0;
+    int money = 0;
+    int balance = 1000000;
+    int minSaldo = 50000;
+    int i = 1;
+    string pl, ul;
+    string username = "adeku";
+    string password = "123456";
+    string login = "block";
+
+    cout << " ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \n ";
+    cout << "Silahkan Login Untuk Melanjutkan Ke Sistem Bank\n";
+    cout << " vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv \n\n ";
+
+    do
+    {
+        cout << " Username\t : ";
+        cin >> ul;
+        cout << "  Password\t : ";
+        cin >> pl;
+
+        if (ul == username && pl == password)
+        {
+            cout << "\n--------------------------" << endl;
+            cout << " Login Berhasil " << endl;
+           cout << "--------------------------" << endl << endl;
+
+            i = 4;
+            login = "berhasil";
+        }
+        else
+        {
+            cout << "\n---------------------------\n";
+            cout << "Username / Password Salah! (" << i << "x)\n";
+            cout << "-----------------------------\n";
+            i = i + 1;
+        }
+
+    } while (i <= 3);
+
+    if (login != "berhasil")
+    {
+        cout << "Anda telah 3x salah login.\n";
+        cout << " Silahkan hubungi layanan terdekat. Terima Kasih..\n\n";
+    }
+
+    // Print command prompt
+    cout << " Enter command number : \n"
+         << " 0. quit\n"
+         << " 1. deposit money\n"
+         << " 2. withdraw money\n"
+         << " 3. print balance\n";
+
+    // Read and handle banking commands
+    cout << " Answer : ";
+    cin >>command;
+
+    switch (command){
+    case 0: // Quit kode
+        cout << "See you later!" << endl;
+        break;
+    case 1: // Deposit code
+        cout << "your balance: " << balance << endl;
+        do{
+         cout << "Enter deposit amount : ";
+         cin >> money;
+            if (money <= 0){
+                cout << "ga boleh negatif sama 0! masukin lagi!" << endl;
+            }
+        } while (money <= 0);
+        balance = balance + money;
+        break;
+    case 2: // Withdraw code
+        do{
+            cout << "your balance: " << balance << endl;
+            cout << "Enter withdraw amount : ";
+            cin >> money;
+            if (money > balance-minSaldo){
+                cout << "ur money is not enough" << endl;
+            }
+            else if (money <= 0){
+                cout << "Tidak boleh negatif dan 0! masukan kembali!" << endl;
+            }
+        } while (money <= 0 || money > balance - minSaldo);
+        balance = balance - money;
+        break;
+    case 3: // Print balance code
+        cout << "Current balance = " << balance << endl;
+        break;
+    default: // Handle other values
+        cout << "try again" << endl;
+        break;
+    }
+    // Print final balance
+    cout << "Final balance = " << balance << endl;
+}
